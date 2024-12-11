@@ -1,0 +1,16 @@
+# Ignore virtual environment
+venv/
+
+# Ignore Python bytecode files
+__pycache__/
+
+# Ignore system-specific files (Mac, Windows, etc.)
+.DS_Store
+Thumbs.db
+
+# Ignore IDE/project files (VS Code, PyCharm, etc.)
+.vscode/
+.idea/
+
+# Ignore dependency lock files (optional, if you use them)
+Pipfile.lock

@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}About{% endblock title %}
+{% block banner-slider %} 
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{% static 'app/images/banner/b1.jpg' %}" alt="banner image">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{% static 'app/images/banner/b2.jpg' %}" alt="banner image">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{% static 'app/images/banner/b3.jpg' %}" alt="banner image">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{% static 'app/images/banner/b4.jpg' %}" alt="banner image">
+      </div>
+    </div>
+</div>
+{% endblock banner-slider %} 
+
+{% block information %}
+
+{% endblock information %}
+
+{% block main-content %}
+
+<div class="container mt-3">
+    <br>
+        <h2 class="text-center">About Us</h2>
+    <br>
+    <div class="row container">
+        <p class="fs-4 text-center">Ilm Foundation for Youth is an initiative committed to nurturing the next generation of the Muslim Ummah. With a strong focus on spreading Islamic knowledge, we provide high-quality books and educational resources to help youth connect with their faith. We believe that knowledge is the foundation for positive change, empowering individuals to live with purpose, integrity, and unity. Our future plans include hosting seminars, courses, and interactive classes to inspire learning and encourage meaningful engagement. At Ilm Foundation, we strive to strengthen the bond of the Muslim youth with Islam, building a united and knowledgeable community for tomorrow.</p> 
+    </div>
+</div>
+
+<div class="container mt-3">
+    <br>
+        <h2 class="text-center">Mission</h2>
+    <br>
+    <div class="row container">
+        <p class="fs-4 text-center">Ilm Foundation for Youth is dedicated to empowering the young generation of the Ummah by making Islamic knowledge accessible and engaging. Recognizing the critical role youth play in shaping the future, we aim to provide high-quality Islamic books, equipping them with the tools to strengthen their faith and understanding. Beyond books, we plan to organize seminars, courses, and classes that inspire, educate, and unite the Muslim youth. Our mission is to foster a well-informed, confident, and united Ummah, driven by knowledge and faith. Join us on this journey to inspire change and build a brighter future together.</p> 
+    </div>
+</div>
+
+{% endblock main-content %}

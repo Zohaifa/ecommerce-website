@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <h1 class="text-center mb-5">Shopping Cart</h1>
+    <div class="row">
+        {% if cart %}
+            <!-- Cart Items Section -->
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3>Your Cart</h3>
+                        {% for item in cart %}
+                        <div class="row mb-4 align-items-center">
+                            <div class="col-sm-3 text-center">
+                                <img src="{{ item.product.product_image.url }}" alt="{{ item.product.title }}" class="img-fluid rounded shadow-sm" width="150">
+                            </div>
+                            <div class="col-sm-9">
+                                <h5 class="mb-2">{{ item.product.title }}</h5>
+                                <p class="text-muted small mb-1">{{ item.product.description }}</p>
+                                <div class="d-flex align-items-center my-3">
+                                    <label class="me-2">Quantity:</label>
+                                    <a class="btn btn-outline-secondary btn-sm me-2 minus-cart" pid="{{ item.product.id }}"><i class="fas fa-minus"></i></a>
+                                    <span id="quantity" class="me-2">{{ item.quantity }}</span>
+                                    <a class="btn btn-outline-secondary btn-sm plus-cart" pid="{{ item.product.id }}"><i class="fas fa-plus"></i></a>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="" class="btn btn-sm btn-danger remove-cart" pid="{{ item.product.id }}">Remove</a>
+                                    <p class="mb-0"><strong>Tk. {{ item.product.discounted_price }}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="text-muted">
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Amount Section -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3>Order Summary</h3>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Subtotal <span id="amount">Tk. {{ amount }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Shipping <span>Tk. 40.00</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>Total (incl. GST)</strong> <span id="totalamount"><strong>Tk. {{ totalamount }}</strong></span>
+                            </li>
+                        </ul>
+                        <a href="{% url 'checkout' %}" class="btn btn-primary btn-block">Place Order</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <h3 class="text-center">Your Cart is Empty</h3>
+                <div class="text-center mt-4">
+                    <a href="{% url 'home' %}" class="btn btn-primary">Go to Shop</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock main-content %}

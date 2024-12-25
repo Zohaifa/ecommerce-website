@@ -124,4 +124,8 @@ LOGIN_REDIRECT_URL = '/profile/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
+STORE_ID = 'ilmfo676942f2ad723'
+STORE_PASS = 'ilmfo676942f2ad723@ssl'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

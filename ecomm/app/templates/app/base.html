@@ -22,14 +22,8 @@
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
                 <a class="nav-link active" href="{% url 'home' %}">Home
-                  <span class="visually-hidden">(current)</span>
+                  <span class="visually-hidden">(current}</span>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -50,10 +44,11 @@
                 </div>
               </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-sm-2" type="search" placeholder="Search">
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <form class="d-flex" role="search" action="/search">
+              <input class="form-control me-2" type="search" placeholder="Search" name="search"
+              aria-label="Search">
+              <button class="btn btn-outline-danger" type="submit">Search</button>
+              </form>
           </div>
           <ul class="navbar-nav me-auto">
             {% if request.user.is_authenticated %}
@@ -61,7 +56,7 @@
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.username }}</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-                <a class="dropdown-item" href="#">Order</a>
+                <a class="dropdown-item" href="{% url 'orders' %}">Order</a>
                 <a class="dropdown-item" href="{% url 'passwordchange' %}">Change password</a>
                 <form method="post" action="{% url 'logout' %}" style="display: inline;">
                   {% csrf_token %}
@@ -69,8 +64,7 @@
                 </form>
             </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'showcart' %}">Cart 4</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Wishlist 4</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'showcart' %}"><span class="badge bg-danger"> {% if totalitem > 0 %} {{totalitem}} {% endif %}</span>Cart</a></li
             {% else %}
             <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'customerregistration' %}">Register</a></li>

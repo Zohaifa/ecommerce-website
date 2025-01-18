@@ -2,11 +2,10 @@ from django.db.models import Count, Q
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
-from . models import Customer, Product, Cart
+from . models import Customer, Product, Cart, OrderPlaced
 from . forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
-#from sslcommerz_python.payment import SSLCSession
 from decimal import Decimal
 from django.conf import settings
 
@@ -128,7 +127,20 @@ class checkout(View):
             famount = famount + value
         totalamount = famount+ 40
         return render(request, 'app/checkout.html', locals())
+    def post(self, request):
+        user = request.user
+        customer_id = int(request.POST.get('custid', None))
+        customer = Customer.objects.get(id=customer_id)
+        cart_items = Cart.objects.filter(user=user)
+        for item in cart_items:
+            OrderPlaced.objects.create(user=user, customer=customer, product=item.product, quantity=item.quantity, payment_status="Pending")
+            item.delete()
+        return redirect('orders')
 
+def order(request):
+    order_placed = OrderPlaced.objects.filter(user=request.user)
+    return render(request, "app/orders.html", locals())
+    
 def plus_cart (request):
     if request.method == 'GET':
         prod_id=request.GET['prod_id']
@@ -187,3 +199,10 @@ def remove_cart(request):
         'totalamount': totalamount
         }
         return JsonResponse(data)
+
+def search(request):
+    query = request.GET.get('search', '').strip()
+    print(f"Search Query: {query}")  
+    products = Product.objects.filter(title__icontains=query) if query else Product.objects.none()
+    
+    return render(request, 'app/search.html', {'products': products, 'query': query})

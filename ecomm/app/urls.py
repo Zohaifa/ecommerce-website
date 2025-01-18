@@ -15,6 +15,7 @@ urlpatterns = [
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('address/', views.address, name='address'),
     path("update-address/<int:pk>", views.updateAddress.as_view(), name="update-address" ),
+    path("search/", views.search, name='search'),
     
     path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
     path('cart/', views.show_cart, name="showcart"),
@@ -22,8 +23,7 @@ urlpatterns = [
     path('pluscart/', views.plus_cart),
     path('minuscart/', views.minus_cart),
     path('removecart/', views.remove_cart),
-
-    
+    path('orders/', views.order, name='orders'),    
 
     #login authentication
     path("registration/", views.CustomerRegistrationView.as_view(), name="customerregistration" ),
